@@ -1,0 +1,66 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <title></title>
+<style id="system" type="text/css">h1,h2,h3,h4,h5,h6,p,blockquote {    margin: 0;    padding: 0;}body {    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;    font-size: 13px;    line-height: 18px;    color: #737373;    margin: 10px 13px 10px 13px;}a {    color: #0069d6;}a:hover {    color: #0050a3;    text-decoration: none;}a img {    border: none;}p {    margin-bottom: 9px;}h1,h2,h3,h4,h5,h6 {    color: #404040;    line-height: 36px;}h1 {    margin-bottom: 18px;    font-size: 30px;}h2 {    font-size: 24px;}h3 {    font-size: 18px;}h4 {    font-size: 16px;}h5 {    font-size: 14px;}h6 {    font-size: 13px;}hr {    margin: 0 0 19px;    border: 0;    border-bottom: 1px solid #ccc;}blockquote {    padding: 13px 13px 21px 15px;    margin-bottom: 18px;    font-family:georgia,serif;    font-style: italic;}blockquote:before {    content:"C";    font-size:40px;    margin-left:-10px;    font-family:georgia,serif;    color:#eee;}blockquote p {    font-size: 14px;    font-weight: 300;    line-height: 18px;    margin-bottom: 0;    font-style: italic;}code, pre {    font-family: Monaco, Andale Mono, Courier New, monospace;}code {    background-color: #fee9cc;    color: rgba(0, 0, 0, 0.75);    padding: 1px 3px;    font-size: 12px;    -webkit-border-radius: 3px;    -moz-border-radius: 3px;    border-radius: 3px;}pre {    display: block;    padding: 14px;    margin: 0 0 18px;    line-height: 16px;    font-size: 11px;    border: 1px solid #d9d9d9;    white-space: pre-wrap;    word-wrap: break-word;}pre code {    background-color: #fff;    color:#737373;    font-size: 11px;    padding: 0;}@media screen and (min-width: 768px) {    body {        width: 748px;        margin:10px auto;    }}</style><style id="custom" type="text/css"></style></head>
+<body marginheight="0"><h1>指针</h1>
+<h2>定义</h2>
+<p>指针是一个变量，起存储的是值的地址，而不是值本身。
+
+</p>
+<p>首先，如何找到常规变量的地址，只需要对变量使用地址操作符（&amp;）：例如
+
+</p>
+<p>home 是一个变量，则&amp;home是它的地址。
+其次，*操作符被称为间接值（indirect value）或者解除引用的操作符，使用它，可以得到该地址处存储的值。
+声明和初始化
+
+</p>
+<p>计算机需要跟踪指针指向的值的类型。例如，char的地址与double的地址看上去都是一样的，但是char和double使用的字节数是不同的，他们存储值时使用的内部格式也不同，因此指针的声明必须指定指针指向的数据的类型。
+
+</p>
+<p>特殊性 int<em> 是一种类型，是指向int的指针，在哪里添加空格（int ptr, int ptr）对于编译器来说是没有任何区别的，但是下面的声明： 
+int</em> p1, p2; 将创建一个指针（p1）和一个常规int变量（p2）。对每个指针变量名，都需要使用一个*。
+地址的长度或值既不能指示关于变量长度或类型的任何信息，也不能指示该地址上有什么建筑物。地址需要2个还是4个字节或者更多的字节取决于计算机系统。 在声明语句中初始化指针。在这种情况下，被初始化的是指针，而不是它指向的值，也就是下面的声明：
+
+</p>
+<p>int higgens = 5; 
+int <em> pt = &amp;higgens; 
+这里将pt（而不是</em>pt）的值设置为&amp;higgens.
+
+</p>
+<h2>危险</h2>
+<p>在C++中创建指针时，计算机将分配用来存储地址的内存，但不会分配用来存储指针所指向的数据的内存。
+
+</p>
+<p>long <em> fellow;</em>fellow = 233323; 
+由于fellow没有被初始化，它可能没有任何值，不管值是什么，程序都将他们解释为存储233323的地址。如果fellow的值碰巧为1200，计算机将把值存储在1200上，即使这恰巧是程序代码的地址。fellow指向的地址很可能不是所要存储233323的地方。这种错误可能导致一些不好追踪的错误。 
+warning 一定要在对指针应用解除应用操作（*）之前，将指针初始化为一个确定的，适当的地址。这是关于使用指针的的必须要遵守的。
+静态联编和动态联编
+
+</p>
+<p>假设要编写一个程序，它是否需要数组取决于运行是提供用户提供的信息。如果通过声明来创建数组，则在程序被编译时将为他分配内存空间，不管程序石佛使用这个数组，或者这个数据在那里，它占用了内存。在编译时给数组分配内存称为静态联编（static binding）.若使用new时，如果在运行阶段需要数组，则创建它，如果不需要就不创建，还可以在运行时选择数组的长度，这被被称为动态联编（dynamic binding）.
+
+</p>
+<h2>使用new来创建动态数组</h2>
+<ul>
+<li>[ ] 使用new创建动态数组
+创建一个包含10个int :
+int* psome = new int [10];
+使用new创建数组时， 应使用另一种格式的delete:
+delete [] psome;</li>
+</ul>
+<p>使用new和delete时，应该遵守下面的规则：
+- 不要使用delete来释放不是new分配的内存。
+- 不要使用delete来释放同一个内存块两次。
+- 如果使用new[] 为数组分配内在，则应使用delete[]来释放。
+- 如果使用new[]为一个试题分配内存，则应使用delete(没有房括号)来释放。
+- 对空值指针应用delete是安全的。
+为数组分配内存的通用格式如下：
+type_name pointer_name = new type_name [point_name];
+
+</p>
+<ul>
+<li>[ ]使用动态数组
+Edit By <a href="http://mahua.jser.me">MaHua</a></li>
+</ul>
+</body></html>

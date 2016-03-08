@@ -1,3 +1,4 @@
+//函数魔板
 #include <iostream>
 #include <stdlib.h>
 using namespace std;

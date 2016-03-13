@@ -1,0 +1,33 @@
+STL: 标准模板库
+STL: Standard Template Lib
+
+七种基本容器：
+1. 向量 vector
+2. 双端队列 deque
+3. 链表 list
+4. 集合 set
+5. 多重集合 multiset
+6. 映射     map
+7. 多重映射 multimap
+序列容器（sequence containers）     关联容器（associative containers）
+vector                              set, multiset
+list                                map, multimap
+deque                               hash_set
+                                    hash_multiset
+                                    hash_map
+                                    hash_multimap
+
+vector: 
+特点：读取能在常数时间完成。
+常用函数：
+empty()
+begin()
+end()
+clear()
+front()
+back()
+push_back(elem)
+pop_back()
+...
+list:
+特点：插入速度很快。

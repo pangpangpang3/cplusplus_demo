@@ -20,7 +20,4 @@ int main(void) {
     cout << bin.getB() << endl;
 
     cout << "------------" << endl;
-    bin2++;bin2++;
-    cout << bin2.getA() << endl;
-    cout << bin2.getB() << endl;
 }

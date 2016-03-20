@@ -8,7 +8,6 @@ using namespace std;
  *定义二项式（Polynomial）
     负号的运算符重载（分别通过成员函数重载和友元函数重载完成）
  *
- *
  * */
 int main(void) {
     Binomial bin(5, 3);

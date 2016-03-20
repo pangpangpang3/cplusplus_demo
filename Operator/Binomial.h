@@ -1,5 +1,6 @@
 class Binomial {
         friend Binomial operator-(Binomial &bin);
+        //friend Binomial operator+(Binomial &bin1, Binomial &bin2);
     public:
         Binomial(int a, int b);
         ~Binomial();
@@ -8,6 +9,7 @@ class Binomial {
         //Binomial operator-();
         Binomial operator++();
         Binomial operator++(int);// 该int值表示是操作符的重载是做后置++的重载
+        Binomial operator+(Binomial &bin);
     private:
         int m_a;
         int m_b;
@@ -47,3 +49,17 @@ Binomial Binomial::operator++(int) {
     m_a++;
     m_b++;
 }
+
+Binomial Binomial::operator+(Binomial &bin) {
+    Binomial temp(0, 0);
+    temp.m_a = m_a + bin.m_a;
+    temp.m_b = m_b + bin.m_b;
+    return temp;
+}
+
+//Binomial operator+(Binomial &bin1, Binomial &bin2) {
+//    Binomial temp(0, 0);
+//    temp.m_a = bin1.m_a + bin2.m_a;
+//    temp.m_b = bin1.m_b + bin2.m_b;
+//    return temp;
+//}

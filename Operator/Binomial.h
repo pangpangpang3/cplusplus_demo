@@ -1,5 +1,9 @@
+#include <ostream>
+using namespace std;
+
 class Binomial {
         friend Binomial operator-(Binomial &bin);
+        friend ostream &operator<<(ostream &out, Binomial &bin);
         //friend Binomial operator+(Binomial &bin1, Binomial &bin2);
     public:
         Binomial(int a, int b);
@@ -55,6 +59,11 @@ Binomial Binomial::operator+(Binomial &bin) {
     temp.m_a = m_a + bin.m_a;
     temp.m_b = m_b + bin.m_b;
     return temp;
+}
+
+ostream &operator<<(ostream &out, Binomial &bin) {
+    out << bin.m_a << "x + (" << bin.m_b << ")";
+    return out;
 }
 
 //Binomial operator+(Binomial &bin1, Binomial &bin2) {
